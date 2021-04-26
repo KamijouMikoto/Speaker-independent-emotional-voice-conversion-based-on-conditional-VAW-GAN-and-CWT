@@ -109,7 +109,7 @@ def validate_log_dirs(args):
             'You can only specify one of the following: ' +
             '--logdir and --restore_from')
 
-    if args.logdir and args.log_root:
+    if args.logdir and args.logdir_root:
         raise ValueError(
             'You can only specify either --logdir or --logdir_root')
 
@@ -117,7 +117,8 @@ def validate_log_dirs(args):
         logdir_root = 'logdir'
 
     if args.logdir is None:
-        logdir = get_default_logdir(logdir_root)
+        logdir = get_default_logdir(args.logdir_root)
+        logdir_root = args.logdir_root
 
     # Note: `logdir` and `restore_from` are exclusive
     if args.restore_from is None:

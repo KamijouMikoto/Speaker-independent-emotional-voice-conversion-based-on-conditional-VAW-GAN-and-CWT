@@ -12,6 +12,8 @@ from analyzer import Tanhize
 from datetime import datetime
 from importlib import import_module
 
+import time
+
 args = tf.app.flags.FLAGS
 tf.app.flags.DEFINE_string('corpus_name', 'emotion_vc', 'Corpus name')
 tf.app.flags.DEFINE_string('checkpoint', './logdir/train/0409-1053-31-2020/model.ckpt-46860', 'root of log dir')
@@ -123,6 +125,7 @@ def main(unused_args=None):
         print()
         while True:
             try:
+                s_time = time.perf_counter()
                 feat, f0, sp = sess.run(
                     [features, f0_t, x_t],
                     feed_dict={y_t_id: np.asarray([SPEAKERS.index(args.trg)])}
@@ -131,6 +134,10 @@ def main(unused_args=None):
                 y = pw2wav(feat)
                 oFilename = make_output_wav_name(output_dir, feat['filename'])
                 print('\rProcessing {}'.format(oFilename), end='')
+                e_time = time.perf_counter()
+                print('\n')
+                print('Time_sp: {}'.format(e_time - s_time))
+                print('\n')
                 sf.write(oFilename, y, FS)
             except KeyboardInterrupt:
                 break

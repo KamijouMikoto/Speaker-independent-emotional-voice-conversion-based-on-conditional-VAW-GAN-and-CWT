@@ -11,6 +11,8 @@ from analyzer_f0 import read_whole_features,dic2npy
 from datetime import datetime
 from importlib import import_module
 
+import time
+
 args = tf.app.flags.FLAGS
 tf.app.flags.DEFINE_string('corpus_name', 'emotion_vc', 'Corpus name')
 
@@ -135,6 +137,7 @@ def main(unused_args=None):
         print()
         while True:
             try:
+                s_time = time.perf_counter()
                 feat, lf0_cwt = sess.run(
                     [features, f0_cwt_t],
                     feed_dict={y_t_id_f0: np.asarray([SPEAKERS.index(args.trg)])}
@@ -146,6 +149,11 @@ def main(unused_args=None):
 
                 with open(join('./f0_results', '{}.bin'.format(oFilename)), 'wb') as fp:
                     fp.write(feats.tostring())
+                e_time = time.perf_counter()
+                print(oFilename)
+                print('\n')
+                print('Time_f0: {}'.format(e_time - s_time))
+                print('\n')
 
             except KeyboardInterrupt:
                 break

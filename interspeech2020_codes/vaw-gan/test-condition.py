@@ -7,7 +7,8 @@ if not os.path.isdir('./test_condition_results/Neutral'):
 
    os.mkdir('./test_condition_results/Neutral')
 
-file_all_dir = '../data/bin/evaluation_set/Neutral'
+# file_all_dir = '../data/bin/evaluation_set/Neutral'
+file_all_dir = '/nas/staff/data_work/Zijiang/EmoV-DB_sorted/for_conversion/vawgan/sle/data/bin/evaluation_set/Neutral'
 
 file_f0_dir = '../vaw-gan-f0/final_results'
 

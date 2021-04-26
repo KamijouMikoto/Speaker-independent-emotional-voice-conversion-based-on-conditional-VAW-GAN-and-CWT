@@ -29,8 +29,8 @@
 		"l2-reg": 1e-6
     },
 	"training": {
-		"src_dir": "./data_multi/bin/training_set/Neutral/*.bin",
-		"trg_dir": "./data_multi/bin/training_set/Angry/*.bin",
+		"src_dir": "/nas/staff/data_work/Zijiang/EmoV-DB_sorted/for_conversion/vawgan/sle/data_f0/bin/training_set/Neutral/*.bin",
+		"trg_dir": "/nas/staff/data_work/Zijiang/EmoV-DB_sorted/for_conversion/vawgan/sle/data_f0/bin/training_set/Sleepy/*.bin",
 		"batch_size": 256,
 		"lr": 1e-5,
 		"lr_schedule": [ [999, 1e-4]],
